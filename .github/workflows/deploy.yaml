@@ -15,13 +15,21 @@ jobs:
  
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
+
+      - name: Configure AWS Credentials
+        env:
+          AWS_REGION: us-east-1
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configure set aws_session_token $AWS_SESSION_TOKEN
  
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v21
         with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          aws_session_token: ${{ secrets.AWS_SESSION_TOKEN }}
           application_name: docker-gh
           environment_name: Dockergh-env
           existing_bucket_name: elasticbeanstalk-us-east-1-923445559289
