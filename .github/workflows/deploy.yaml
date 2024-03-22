@@ -17,10 +17,6 @@ jobs:
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
 
-      - name: Configure AWS Credentials
-        run: |
-          aws sts get-caller-identity
-
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v21
         with:
@@ -30,6 +26,7 @@ jobs:
           application_name: docker-gh
           environment_name: Dockergh-env
           existing_bucket_name: elasticbeanstalk-us-east-1-923445559289
-          region: us-east-1
+          region: eu-west-1
           version_label: ${{ github.sha }}43
+          
           deployment_package: deploy.zip
