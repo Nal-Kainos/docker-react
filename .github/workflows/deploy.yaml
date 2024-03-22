@@ -14,6 +14,9 @@ jobs:
       - run: docker build -t cygnetops/react-test -f Dockerfile.dev .
       - run: docker run -e CI=true cygnetops/react-test npm test
 
+      - name: Check AWS CLI version
+        run: aws --version
+
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
 
