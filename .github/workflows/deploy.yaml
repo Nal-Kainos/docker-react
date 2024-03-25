@@ -17,9 +17,6 @@ jobs:
       - name: Check AWS CLI version
         run: aws --version
 
-      - name: Check AWS CLI configuration
-        run: aws configure list --profile default
-
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
 
