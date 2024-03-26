@@ -27,7 +27,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: us-east-1
-      
+
+      - name: List Files
+        run: |
+          ls -l
+
       - name: Create or update IAM policy
         run: |
           aws iam create-policy --policy-name S3BucketPolicy --policy-document file://s3-policy.json
