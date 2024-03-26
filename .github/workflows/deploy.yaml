@@ -27,6 +27,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: us-east-1
+      
+      - name: Create or update IAM policy
+        run: |
+          aws iam put-policy --policy-name S3BucketPolicy --policy-document file://s3-policy.json
 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v21
