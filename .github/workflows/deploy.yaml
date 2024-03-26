@@ -30,7 +30,8 @@ jobs:
       
       - name: Create or update IAM policy
         run: |
-          aws iam put-policy --policy-name S3BucketPolicy --policy-document file://s3-policy.json
+          aws iam create-policy --policy-name S3BucketPolicy --policy-document file://s3-policy.json
+
 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v21
