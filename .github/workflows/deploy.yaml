@@ -38,8 +38,8 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_session_token: ${{ secrets.AWS_SESSION_TOKEN }}
-          application_name: frontend
-          environment_name: Frontend-env
+          application_name: docker-gh
+          environment_name: Docker-gh-env
           existing_bucket_name: elasticbeanstalk-eu-west-1-184353012435
           region: eu-west-1
           version_label: ${{ github.sha }}43
