@@ -32,11 +32,6 @@ jobs:
         run: |
           ls -l
 
-      - name: Create or update IAM policy
-        run: |
-          aws iam create-policy --policy-name S3BucketPolicy --policy-document file://s3-policy.json
-
-
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v21
         with:
@@ -45,7 +40,7 @@ jobs:
           aws_session_token: ${{ secrets.AWS_SESSION_TOKEN }}
           application_name: docker-gh
           environment_name: Dockergh-env
-          existing_bucket_name: elasticbeanstalk-us-east-1-923445559289
+          existing_bucket_name: elasticbeanstalk-eu-west-1-184353012435
           region: eu-west-1
           version_label: ${{ github.sha }}43
           deployment_package: deploy.zip
